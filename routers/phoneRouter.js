@@ -6,11 +6,14 @@ const {
   getPhone,
   removePhone,
 } = require("../controllers/phoneController");
+const { validator } = require("../middleware/validator");
+const { phoneSchema } = require("../schema/phoneSchema");
+
 const phoneRouter = express.Router();
 
 phoneRouter
 
-  .post("/", createPhone)
+  .post("/add", validator(phoneSchema), createPhone)
   .get("/", listPhone)
   .put("/", upadtePhone)
   .get("/:id", getPhone)
