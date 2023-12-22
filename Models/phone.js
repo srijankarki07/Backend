@@ -3,14 +3,14 @@ const { Schema } = mongoose;
 
 const phoneSchema = new Schema(
   {
-    model: String, // String is shorthand for {type: String}
     Name: String,
+    model: String, // String is shorthand for {type: String}
     RAM: Number,
     storage: Number,
     battery: Number,
     price: Number,
     color: String,
-    year: Number,
+    year: String,
   },
   { timestamps: true }
 );

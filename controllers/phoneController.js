@@ -5,11 +5,17 @@ const createPhone = expressAsyncHandler(async (req, res) => {
   try {
     console.log(req.body);
     const phone = new Phone(req.body);
-    phone.save().then(() => console.log("phone added"));
+    phone
+      .save()
+      .then(() => console.log("phone added"))
+      .catch((err) => {
+        console.log(err);
+        res.status(401).send({ message: "err creating phone", err });
+      });
     res.send(phone);
   } catch (error) {
     console.log(error);
-    res.send({ message: "error creating phone", error });
+    res.status(401).send({ message: "error creating phone", error });
   }
 });
 const listPhone = expressAsyncHandler(async (req, res) => {
